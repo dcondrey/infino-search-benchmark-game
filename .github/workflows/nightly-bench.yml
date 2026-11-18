@@ -2,7 +2,8 @@ name: Nightly benchmark
 
 # Runs the full turbopuffer-comparison bench on a dedicated 8 vCPU / 16 GiB
 # Sapphire Rapids box, commits results.json to master, and lets the existing
-# pages.yml publish the dashboard.
+# pages.yml publish the dashboard. Scheduled about every two weeks (1st and
+# 15th of the month); dispatch it for anything in between.
 #
 # The box is a GCP c3-highcpu-8 by default. The AWS c7i.2xlarge the nightly
 # used to run on is still fully supported — dispatch with `cloud: aws` to get
@@ -30,7 +31,7 @@ name: Nightly benchmark
 
 on:
   schedule:
-    - cron: '0 3 * * *'   # 03:00 UTC daily
+    - cron: '0 3 1,15 * *'   # 03:00 UTC on the 1st and 15th (~every two weeks)
   workflow_dispatch:
     inputs:
       infino_branch:
