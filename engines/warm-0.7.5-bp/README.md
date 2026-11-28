@@ -1,11 +1,11 @@
 # WARM
 
 [WARM](https://github.com/writerslogic/warm) is an Apache-2.0 Rust engine for local search and
-agent memory. This engine builds against `warm-rust` from the engine branch that moves the
-index-derived tables to index time (see Dependency), with `Cargo.lock` committed.
+agent memory. This engine builds against the published `warm-rust` 0.7.5 (see Dependency), with `Cargo.lock`
+committed.
 
 Compaction reorders documents by recursive graph bisection, the technique behind the Lucene `-bp`
-column, so this engine is named `warm-0.7.4-bp`. The adapter has no setting that skips the
+column, so this engine is named `warm-0.7.5-bp`. The adapter has no setting that skips the
 reordering.
 
 ## Queries
@@ -23,7 +23,7 @@ pruning is exact: `WARM_LEXICAL_EXECUTION=exhaustive` selects the full evaluatio
 ## Tokenization and scoring
 
 Unicode alphanumeric tokens, lowercased, no stemming. On the pre-transformed corpus (lowercase
-ASCII and spaces) this is whitespace splitting. BM25 with k1 = 1.2, b = 0.75,
+ASCII and spaces) this is whitespace splitting. BM25 with WARM's defaults (k1 = 1.2, b = 0.75, as tantivy and infino; the (k1+1) numerator is a constant factor and does not change ranking),
 `idf = ln(1 + (N - df + 0.5) / (df + 0.5))`, exact article lengths and f64 arithmetic. Empty
 articles are skipped.
 
@@ -47,5 +47,4 @@ printed only for the `TOP_*_FF` commands.
 
 ## Dependency
 
-`warm-rust` is a git dependency on the engine branch that carries the index-time tables. The
-pin to a published release is pending that release.
+`warm-rust = "=0.7.5"` from crates.io; the exact version and `Cargo.lock` are committed.
