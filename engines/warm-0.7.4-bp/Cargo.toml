@@ -4,8 +4,9 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-# The published crate, pinned to the exact release the engine is named for.
-warm-rust = "=0.7.4"
+# Pending a release: the index-time tables are on the perf/index-time-tables branch of the engine, pinned by commit. Replace with the exact
+# published version and refresh Cargo.lock once it is released.
+warm-rust = { git = "https://github.com/writerslogic/warm", rev = "76b722808e5d1385877bdb67e10e66336b3e40f9" }
 anyhow = "1"
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
